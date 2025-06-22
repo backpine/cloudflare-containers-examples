@@ -1,0 +1,46 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "containers-examples-v1",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-05-23",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+  },
+  "containers": [
+    {
+      "class_name": "PythonFastAPIContainer",
+      "image": "./containers/python-fastapi/Dockerfile",
+      "max_instances": 3,
+      "name": "python-fastapi-container",
+    },
+    {
+      "class_name": "GoTaskContainer",
+      "image": "./containers/go-task/Dockerfile",
+      "max_instances": 1,
+      "name": "go-task-container",
+    },
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "class_name": "PythonFastAPIContainer",
+        "name": "PYTHON_CONTAINER",
+      },
+      {
+        "class_name": "GoTaskContainer",
+        "name": "GO_TASK_CONTAINER",
+      },
+    ],
+  },
+  "migrations": [
+    {
+      "new_sqlite_classes": ["PythonFastAPIContainer", "GoTaskContainer"],
+      "tag": "v1",
+    },
+  ],
+}
