@@ -19,7 +19,7 @@ App.get("/python-container/load-balance", async (c) => {
   const containerService = await loadBalance(c.env.PYTHON_CONTAINER, 3);
   // Notice that we are fetching the load-balanced URL
   // we can access specific container paths by useing https://<any-name>/<path>
-  return await containerService.fetch("http://python-container/load-balance");
+  return await containerService.fetch("https://google.com/load-balance");
 });
 
 App.get("/go-task", async (c) => {
@@ -29,4 +29,21 @@ App.get("/go-task", async (c) => {
   );
 
   return await containerService.fetch("http://go-task/");
+});
+
+App.get("/video-upload", async (c) => {
+  const containerService = getContainer(c.env.PYTHON_CONTAINER, "instance-1");
+  // Notice that we are fetching the load-balanced URL
+  // we can access specific container paths by useing https://<any-name>/<path>
+  return await containerService.fetch(c.req.raw);
+});
+
+App.post("/process-video", async (c) => {
+  try {
+    const containerService = getContainer(c.env.PYTHON_CONTAINER, "instance-1");
+    return await containerService.fetch(c.req.raw);
+  } catch (error) {
+    console.error("Error processing video:", error);
+    return c.json({ error: "Video processing failed" }, 500);
+  }
 });
