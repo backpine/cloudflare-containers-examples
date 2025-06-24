@@ -19,7 +19,7 @@ App.get("/python-container/load-balance", async (c) => {
   const containerService = await loadBalance(c.env.PYTHON_CONTAINER, 3);
   // Notice that we are fetching the load-balanced URL
   // we can access specific container paths by useing https://<any-name>/<path>
-  return await containerService.fetch("https://google.com/load-balance");
+  return await containerService.fetch("https://container/load-balance");
 });
 
 App.get("/go-task", async (c) => {

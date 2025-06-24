@@ -25,12 +25,12 @@ CLOUDFLARE_PLACEMENT_ID = os.environ.get("CLOUDFLARE_PLACEMENT_ID", "Unknown")
 CLOUDFLARE_REGION = os.environ.get("CLOUDFLARE_REGION", "Unknown")
 
 @app.get("/")
-def read_root():
+def hello_world():
     logger.info("Root endpoint accessed")
     return {"Hello": "World"}
 
 @app.get("/python-container")
-def read_health():
+def python_container():
     logger.info("Python container direct request")
     os.environ.get("PYTHONPATH")
     handleLogic()
@@ -46,8 +46,6 @@ def load_balance():
         "Cloudflare Deployment ID": CLOUDFLARE_DEPLOYMENT_ID,
         "Cloudflare Region": CLOUDFLARE_REGION
     }
-
-
 
 
 @app.get("/video-upload", response_class=HTMLResponse)
