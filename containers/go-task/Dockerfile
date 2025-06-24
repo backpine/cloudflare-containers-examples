@@ -6,11 +6,11 @@ FROM golang:1.24-alpine AS build
 WORKDIR /app
 
 # Download any Go modules
-COPY go.mod ./
+COPY ./containers/go-task/go.mod ./
 RUN go mod download
 
 # Copy container source code
-COPY *.go ./
+COPY ./containers/go-task/*.go ./
 
 # Build
 RUN CGO_ENABLED=0 GOOS=linux go build -o /go-task

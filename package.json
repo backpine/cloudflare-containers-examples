@@ -12,10 +12,10 @@
   "devDependencies": {
     "@types/node": "^24.0.3",
     "typescript": "^5.5.2",
-    "wrangler": "4.21.0"
+    "wrangler": "4.21.1"
   },
   "dependencies": {
-    "@cloudflare/containers": "^0.0.8",
+    "@cloudflare/containers": "^0.0.13",
     "hono": "^4.8.2"
   },
   "cloudflare": {

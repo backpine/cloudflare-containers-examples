@@ -5,9 +5,9 @@ WORKDIR /code
 # Install ffmpeg
 RUN apk add --no-cache ffmpeg
 
-COPY ./requirements.txt /code/requirements.txt
+COPY ./containers/python-fastapi/requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-COPY ./app /code/app
+COPY ./containers/python-fastapi/app /code/app
 
 EXPOSE 8081
 
