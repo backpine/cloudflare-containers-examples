@@ -15,12 +15,14 @@
     {
       "class_name": "PythonFastAPIContainer",
       "image": "./containers/python-fastapi/Dockerfile",
+      "image_build_context": ".",
       "max_instances": 3,
       "name": "python-fastapi-container",
     },
     {
       "class_name": "GoTaskContainer",
       "image": "./containers/go-task/Dockerfile",
+      "image_build_context": ".",
       "max_instances": 1,
       "name": "go-task-container",
     },
